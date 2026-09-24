@@ -1,0 +1,5 @@
+interface:
+  display_name: "Update Docs from Diff"
+  short_description: "Update project docs from branch diffs"
+policy:
+  allow_implicit_invocation: false
