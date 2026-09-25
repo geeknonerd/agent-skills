@@ -33,6 +33,19 @@ new_repo() {
 printf '%s\n' '== Agent Skills validation =='
 npx -y skills-ref@0.1.5 validate "$skill_dir"
 
+printf '%s\n' '== SKILL.md contract =='
+for required in \
+    '当前会话上下文' \
+    'conversation context' \
+    '项目规则未加载' \
+    '无 diff 模式' \
+    'user-approved' \
+    '隐私硬边界'
+do
+    grep -q "$required" "$skill_dir/SKILL.md" || fail "SKILL.md is missing: $required"
+    printf 'ok - SKILL.md contains %s\n' "$required"
+done
+
 printf '%s\n' '== Shell syntax =='
 sh -n "$script"
 printf '%s\n' 'ok - resolve-base.sh'
